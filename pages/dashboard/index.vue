@@ -1,6 +1,6 @@
 <template>
   <div>
-    Dashboard
+    <h1 class="text-blue-900">Lastest Feed</h1>
   </div>
 </template>
 

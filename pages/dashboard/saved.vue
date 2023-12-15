@@ -1,6 +1,6 @@
 <template>
   <div>
-    saved
+    <h1 class="text-blue-900">Saved Images</h1>
   </div>
 </template>
 

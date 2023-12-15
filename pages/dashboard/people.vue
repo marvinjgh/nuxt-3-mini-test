@@ -1,6 +1,7 @@
 <template>
   <div>
-    people
+    <h1 class="text-blue-900">People you follow</h1>
+    <h1 class="text-blue-900">People you may know</h1>
   </div>
 </template>
 
@@ -11,6 +12,4 @@ definePageMeta({
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

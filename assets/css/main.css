@@ -2,3 +2,7 @@ html,body, #__nuxt, #__layout{
   height:100%!important;
   width: 100%!important;
 }
+
+h1 {
+  font-size: 2em;
+}

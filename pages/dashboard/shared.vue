@@ -1,6 +1,6 @@
 <template>
   <div>
-    shared
+    <h1 class="text-blue-900">Images shared with me</h1>shared
   </div>
 </template>
 
