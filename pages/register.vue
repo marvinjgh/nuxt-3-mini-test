@@ -160,6 +160,9 @@ async function onSubmit(values) {
 
   errorMessage.value = null;
   loading.value = true;
+
+  values.avatar = avatars[parseInt(values.avatar)].src;
+
   const { data, pending, error } = await useFetch(
     '/api/register',
     {
@@ -167,7 +170,7 @@ async function onSubmit(values) {
     }
   )
   loading.value = false;
-  if (!pending && !error) {
+  if (!pending.value && !error.value) {
     const { user, token } = data.value;
     authStore.logIn(user, token);
     await navigateTo('/dashboard')

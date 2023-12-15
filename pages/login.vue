@@ -77,7 +77,7 @@ async function onSubmit(values) {
     }
   )
   loading.value = false;
-  if (!pending && !error) {
+  if (!pending.value && !error.value) {
     const { user, token } = data.value;
     authStore.logIn(user, token);
     await navigateTo('/dashboard')
