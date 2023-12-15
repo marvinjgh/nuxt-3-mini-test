@@ -4,12 +4,12 @@
       <div class="flex flex-col py-4 items-center">
         <div class="rounded-full ring-2 ring-white p-1 h-[72px] w-[72px]">
           <Avatar size="base">
-            <AvatarImage src="https://singlecolorimage.com/get/2F4538/64x64" alt="user avatar" />
+            <AvatarImage :src="user.avatar" alt="user avatar" />
             <AvatarFallback>AV</AvatarFallback>
           </Avatar>
         </div>
-        <p class="font-bold mt-2">name</p>
-        <p>@username</p>
+        <p class="font-bold mt-2">{{ user.fullName }}</p>
+        <p>@{{ user.username }}</p>
       </div>
       <NuxtLink to="/dashboard" active-class="bg-primary text-white" class="flex h-12 items-center">
         <i class="material-icons mx-4 text-green-800">home</i>
@@ -53,11 +53,13 @@
       </div>
     </nav>
     <div class="flex-1">
-      <div class="flex w-full h-16 bg-primary pl-4 items-center">
+      <div class="flex w-full h-16 bg-primary pl-4 items-center drop-shadow-lg">
         <img src="https://singlecolorimage.com/get/33fd8f/300x48" alt="green" class="logo">
-        
+
       </div>
-      <slot />
+      <div class="mt-4 ml-4">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -65,9 +67,11 @@
 <script setup>
 const authStore = useAuthStore();
 
-if (!authStore.isAuthenticated){
+if (!authStore.isAuthenticated) {
   await navigateTo('/login')
 }
+
+const { user } = authStore;
 
 async function logout() {
   authStore.logOut()
@@ -75,8 +79,6 @@ async function logout() {
 }
 </script>
 
-<style global>
-</style>
+<style global></style>
 
-<style scoped>
-</style>
+<style scoped></style>
