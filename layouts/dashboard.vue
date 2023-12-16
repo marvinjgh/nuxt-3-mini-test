@@ -4,12 +4,12 @@
       <div class="flex flex-col py-4 items-center">
         <div class="rounded-full ring-2 ring-white p-1 h-[72px] w-[72px]">
           <Avatar size="base">
-            <AvatarImage :src="user.avatar" alt="user avatar" />
+            <AvatarImage :src="user ? user.avatar : ''" alt="user avatar" />
             <AvatarFallback>AV</AvatarFallback>
           </Avatar>
         </div>
-        <p class="font-bold mt-2">{{ user.fullName }}</p>
-        <p>@{{ user.username }}</p>
+        <p class="font-bold mt-2">{{ user ? user.fullName : '' }}</p>
+        <p>@{{ user ? user.username : '' }}</p>
       </div>
       <NuxtLink to="/dashboard" active-class="bg-primary text-white" class="flex h-12 items-center">
         <i class="material-icons mx-4 text-green-800">home</i>
@@ -57,7 +57,7 @@
         <img src="https://singlecolorimage.com/get/33fd8f/300x48" alt="green" class="logo">
 
       </div>
-      <div class="mt-4 ml-4">
+      <div class="pt-4 pl-4">
         <slot />
       </div>
     </div>
@@ -65,6 +65,9 @@
 </template>
 
 <script setup>
+
+// TODO find how to fix error 500 when restart the server, and localstorage has data.
+
 const authStore = useAuthStore();
 
 if (!authStore.isAuthenticated) {

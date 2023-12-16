@@ -2,12 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    [
-      "@pinia/nuxt",
-      {
-        autoImports: ["defineStore", "acceptHMRUpdate"],
-      },
-    ],
+    "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vee-validate/nuxt",
     "shadcn-nuxt",
@@ -46,9 +41,9 @@ export default defineNuxtConfig({
     componentDir: "./components/ui",
   },
   runtimeConfig: {
-    apiSecret: '',
+    apiSecret: "",
     public: {
-      apiBase: '',
-    }
+      apiBase: "",
+    },
   },
 });

@@ -18,6 +18,7 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        '3xl': '1600px',
       },
     },
     extend: {
@@ -55,6 +56,9 @@ module.exports = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        screens:{
+          '3xl': '1600px',
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
