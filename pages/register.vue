@@ -111,9 +111,9 @@ import * as yup from 'yup';
 
 const config = useRuntimeConfig()
 const authStore = useAuthStore();
-const avaterSel = useState('avaterSel', () => '')
-const loading = useState('loading', () => false);
-const errorMessage = useState('errorMessage', () => null);
+const avaterSel = ref('')
+const loading = ref(false);
+const errorMessage = ref('');
 
 const schema = yup.object({
   // TODO add regex to check firstName, lastName, username
@@ -158,10 +158,10 @@ async function onSubmit(values) {
   // fetch data from backend
   // TODO apply md5 to password
 
-  errorMessage.value = null;
+  errorMessage.value = '';
   loading.value = true;
 
-  values.avatar = avatars[parseInt(values.avatar)].src;
+  values.avatar = avatars[parseInt(values.avatar) - 1].src;
 
   const { data, pending, error } = await useFetch(
     '/api/register',

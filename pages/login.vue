@@ -56,8 +56,8 @@ import * as yup from 'yup';
 
 const config = useRuntimeConfig()
 const authStore = useAuthStore();
-const loading = useState('loading', () => false);
-const errorMessage = useState('errorMessage', () => null);
+const loading = ref(false);
+const errorMessage = ref('');
 
 const schema = yup.object({
   email: yup.string().required().email(),
@@ -68,7 +68,7 @@ const schema = yup.object({
 async function onSubmit(values) {
   // fetch data from backend
   // TODO apply md5 to password
-  errorMessage.value = null;
+  errorMessage.value = '';
   loading.value = true;
   const { data, pending, error } = await useFetch(
     '/api/login',
@@ -82,9 +82,9 @@ async function onSubmit(values) {
     authStore.logIn(user, token);
     await navigateTo('/dashboard')
   } else {
-    if (error.value.data){
+    if (error.value.data) {
       errorMessage.value = error.value.data.message
-    }else{
+    } else {
       errorMessage.value = "Error"
     }
   }
