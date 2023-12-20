@@ -21,8 +21,7 @@
     <p class="mt-28" v-if="loading">Loading</p>
     <p class="mt-28" v-else-if="errorMessage">{{ errorMessage }}</p>
     <p class="mt-28" v-else-if="!postsResult">Start searching for images, your AI is waiting for you!</p>
-    <PostSearch v-else v-for="post in postsResult" :key="post.id" :post="post" :onBookmark="onBookmark"/>
-
+    <PostSearch v-else v-for="post in postsResult" :key="post.id" :post="post" :onBookmark="onBookmark" />
   </div>
 </template>
 
@@ -33,11 +32,14 @@ definePageMeta({
 
 import { Form } from 'vee-validate';
 import * as yup from 'yup';
+import { useToast } from '@/components/ui/toast/use-toast'
+
 const config = useRuntimeConfig()
 const authStore = useAuthStore();
 const loading = ref(false);
 const errorMessage = ref('');
 const postsResult = ref(null);
+const { toast } = useToast()
 
 const schema = yup.object({
   text: yup.string().required(),
@@ -72,8 +74,34 @@ async function onSubmit(values) {
   }
 }
 
-function onBookmark(post) {
-  // TODO save the post
+async function onBookmark(post) {
+  const { data, pending, error } = await useFetch(
+    '/api/posts/saved',
+    {
+      method: 'post',
+      baseURL: config.public.apiBase,
+      headers: { Authorization: `Bearer ${authStore.token}` },
+      body: post
+    }
+  );
+
+  if (!pending.value && !error.value) {
+    toast({
+      title: 'Saved',
+      description: 'The images can be found in the saved images section',
+    });
+  } else {
+    let message = ''
+    if (error.value.data) {
+      message = error.value.data.message;
+    } else {
+      message = "Unexpected error saving the image";
+    }
+    toast({
+      title: 'Error',
+      description: message,
+    });
+  }
 }
 
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="h-full w-full flex">
+    <Toaster />
     <nav class="h-full bg-red-100 w-56 flex flex-col">
       <div class="flex flex-col py-4 items-center">
         <div class="rounded-full ring-2 ring-white p-1 h-[72px] w-[72px]">
