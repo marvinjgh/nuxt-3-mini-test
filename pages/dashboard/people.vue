@@ -21,12 +21,15 @@
 definePageMeta({
   layout: "dashboard",
 })
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
+const authStore = useAuthStore();
 
 const { data, pending, error } = await useFetch(
   '/api/people',
   {
-    method: 'get', baseURL: config.public.apiBase
+    method: 'get', 
+    baseURL: config.public.apiBase,
+    headers: { Authorization: `Bearer ${authStore.token}` }
   }
 )
 
