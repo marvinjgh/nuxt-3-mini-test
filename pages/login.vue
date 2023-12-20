@@ -67,7 +67,7 @@ const schema = yup.object({
 
 async function onSubmit(values) {
   // fetch data from backend
-  // TODO apply md5 to password
+
   errorMessage.value = '';
   loading.value = true;
   const { data, pending, error } = await useFetch(

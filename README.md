@@ -25,6 +25,9 @@ Make sure to install the dependencies:
 ```bash
 yarn install
 ```
+## Runtime Config
+
+This project add one new environment variable, `apiBase` that containt the url of the backend api.
 
 ## Development Server
 

@@ -41,7 +41,6 @@ export default defineNuxtConfig({
     componentDir: "./components/ui",
   },
   runtimeConfig: {
-    apiSecret: "",
     public: {
       apiBase: "",
     },

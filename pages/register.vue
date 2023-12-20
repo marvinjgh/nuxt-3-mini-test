@@ -166,7 +166,9 @@ async function onSubmit(values) {
   const { data, pending, error } = await useFetch(
     '/api/register',
     {
-      method: 'post', body: values, baseURL: config.public.apiBase
+      method: 'post',
+      body: values,
+      baseURL: config.public.apiBase
     }
   )
   loading.value = false;
